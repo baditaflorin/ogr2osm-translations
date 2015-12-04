@@ -21,7 +21,7 @@ def filterTags(attrs):
     if 'NOMVIAL' in attrs:
         source_name = attrs.get('NOMVIAL')
         if source_name != 'NINGUNO':
-            tags['name'] = '{} {}'.format(
+            tags['name'] = u'{} {}'.format(
                 attrs.get('TIPOVIAL'),
                 source_name).title()
 
