@@ -10,20 +10,34 @@ def filterTags(attrs):
         return
     tags = {}
 
-    if 'TIPOVIAL'in attrs:
-        source_type = attrs.get('TIPOVIAL')
+    source_type = attrs.get('TIPOVIAL')
+    source_name = attrs.get('NOMVIAL')
+
+    if source_type:
+        tags['inegi:tipovial'] = source_type.lower()
         if source_type == 'CALLE':
             tags['highway'] = 'residential'
+        if source_type == 'OTRO':
+            tags['highway'] = 'unclassified'
         if source_type == 'PRIVADA':
             tags['highway'] = 'service'
             tags['access'] = 'private'
 
-    if 'NOMVIAL' in attrs:
-        source_name = attrs.get('NOMVIAL')
+    if source_name:
+        tags['inegi:nomvial'] = source_name.lower()
         if source_name != 'NINGUNO':
-            tags['name'] = u'{} {}'.format(
-                attrs.get('TIPOVIAL'),
+            tags['name'] = u'{}{}'.format(
+                source_type + ' ' if source_type != 'OTRO' else '',
                 source_name).title()
+
+
+    if 'SENTIDO' in attrs:
+        source_oneway = attrs.get('SENTIDO')
+        tags['inegi:sentido'] = source_oneway.lower()
+        if source_oneway == 'DOS SENTIDOS':
+            tags['oneway'] = 'no'
+        if source_oneway == 'UN SENTIDO':
+            tags['oneway'] = 'yes'
 
     tags['source'] = 'INEGI'
 
