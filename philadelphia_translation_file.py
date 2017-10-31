@@ -115,7 +115,7 @@ def filterTags(attrs):
 
     if "ONEWAY" in attrs:
         if attrs["ONEWAY"].strip() == "TF":
-            tags["oneway"] = "-1"
+            tags["oneway"] = "yes"
         if attrs["ONEWAY"].strip() == "FT":
 			tags["oneway"] = "yes"
 
