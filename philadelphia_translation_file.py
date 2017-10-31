@@ -126,13 +126,13 @@ def highway_class(class_id):
     if class_id == '0':
         return 'service'
     elif class_id == '1':
-        return 'trunk'
+        return 'motorway'
     elif class_id == '2':
         return 'primary'
     elif class_id == '3':
         return 'secondary'
     elif class_id == '4':
-        return 'tertiary'
+        return 'residential'
     elif class_id == '5':
         return 'residential'
     elif class_id == '6':
